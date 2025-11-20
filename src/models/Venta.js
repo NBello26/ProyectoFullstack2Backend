@@ -1,30 +1,25 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-const Usuario = sequelize.define("Usuario", {
-  id: {
+const Venta = sequelize.define("Venta", {
+  id_venta: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true
   },
-  nombre: {
+  id_cliente: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  total: {
+    type: DataTypes.INTEGER,
+    allowNull: false
+  },
+  nombre_cliente: {
     type: DataTypes.STRING,
     allowNull: false
   },
   correo: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true
-  },
-  contraseña: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  comuna: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  region: {
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -32,12 +27,28 @@ const Usuario = sequelize.define("Usuario", {
     type: DataTypes.STRING,
     allowNull: false
   },
-  tipusuario: {
+  calle: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  departamento: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  region: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  comuna: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  indicaciones: {
+    type: DataTypes.TEXT,
+    allowNull: true
   }
 }, {
-  tableName: "usuarios"
+  tableName: "ventas"
 });
 
-module.exports = Usuario;
+module.exports = Venta;

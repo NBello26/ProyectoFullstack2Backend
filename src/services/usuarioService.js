@@ -1,32 +1,27 @@
-const {
-  obtenerUsuarios,
-  crearUsuario,
-  obtenerUsuarioPorId,
-  actualizarUsuario,
-  eliminarUsuario
-} = require("../data/users");
+const Usuario = require("../models/Usuario");
 
 module.exports = {
   obtenerTodos() {
-    return obtenerUsuarios();
+    return Usuario.findAll();
   },
 
   guardarUsuario(data) {
-    return crearUsuario(data);
+    return Usuario.create(data);
   },
 
   obtenerPorId(id) {
-    return obtenerUsuarioPorId(Number(id));
-  },
-
-  async actualizarUsuario(id, data) {
-    const usuario = obtenerUsuarioPorId(Number(id));
-    if (!usuario) return null;
-
-    return actualizarUsuario(Number(id), data);
+    return Usuario.findByPk(id);
   },
 
   eliminarUsuario(id) {
-    return eliminarUsuario(Number(id));
+    return Usuario.destroy({ where: { id } });
+  },
+
+  async actualizarUsuario(id, data) {
+    const usuario = await Usuario.findByPk(id);
+    if (!usuario) return null;
+
+    await usuario.update(data);
+    return usuario;
   }
 };

@@ -6,12 +6,7 @@ module.exports = {
   },
 
   async crear(req, res) {
-    try {
-      const nuevo = await service.guardarUsuario(req.body);
-      res.json(nuevo);
-    } catch (err) {
-      res.status(400).json({ error: "Error al crear usuario" });
-    }
+    res.json(await service.guardarUsuario(req.body));
   },
 
   async obtener(req, res) {
@@ -20,14 +15,16 @@ module.exports = {
     res.json(usuario);
   },
 
+  async eliminar(req, res) {
+    await service.eliminarUsuario(req.params.id);
+    res.json({ message: "Usuario eliminado" });
+  },
+
   async actualizar(req, res) {
     const usuario = await service.actualizarUsuario(req.params.id, req.body);
     if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
     res.json(usuario);
-  },
-
-  async eliminar(req, res) {
-    await service.eliminarUsuario(req.params.id);
-    res.json({ message: "Usuario eliminado" });
   }
+
+  
 };

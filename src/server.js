@@ -5,6 +5,9 @@ const sequelize = require("./config/db");
 
 const productoRoutes = require("./routes/productoRoutes");
 const usuarioRoutes = require("./routes/usuarioRoutes");
+const ventaRoutes = require("./routes/ventaRoutes");
+const detalleVentaRoutes = require("./routes/detalleVentaRoutes");
+const contactoRoutes = require("./routes/contactoRoutes");
 
 const app = express();
 app.use(cors());
@@ -13,6 +16,9 @@ app.use(express.json());
 // Rutas
 app.use("/api/productos", productoRoutes);
 app.use("/api/usuarios", usuarioRoutes);
+app.use("/api/ventas", ventaRoutes);
+app.use("/api/detalle-venta", detalleVentaRoutes);
+app.use("/api/contacto", contactoRoutes);
 
 // Conexión con Neon + Iniciar servidor
 sequelize.authenticate()
