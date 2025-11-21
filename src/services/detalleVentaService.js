@@ -9,6 +9,12 @@ module.exports = {
     return DetalleVenta.findByPk(id);
   },
 
+  obtenerPorVenta(idVenta) {
+    return DetalleVenta.findAll({
+      where: { id_venta: idVenta }
+    });
+  },
+
   crear(detalle) {
     return DetalleVenta.create(detalle);
   },
