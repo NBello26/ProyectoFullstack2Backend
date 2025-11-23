@@ -10,7 +10,10 @@ const detalleVentaRoutes = require("./routes/detalleVentaRoutes");
 const contactoRoutes = require("./routes/contactoRoutes");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["https://proyectofullstack2eva2.onrender.com"],
+  credentials: true
+}));
 app.use(express.json());
 
 // Rutas
